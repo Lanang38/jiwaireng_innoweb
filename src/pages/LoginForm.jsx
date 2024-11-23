@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import loginImage from "../assets/login.png"; // Import gambar login
+import signupImage from "../assets/signup.png"; // Import gambar signup
 
 function LoginForm({ onLogin }) {
   const [isSignUpMode, setIsSignUpMode] = useState(false);
@@ -9,7 +11,6 @@ function LoginForm({ onLogin }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Tanpa validasi input, langsung login
     onLogin();
   };
 
@@ -18,6 +19,7 @@ function LoginForm({ onLogin }) {
       <div className="container">
         <div className="forms-container">
           <div className="signin-signup">
+            {/* Sign In Form */}
             <form onSubmit={handleSubmit} className="sign-in-form">
               <h2 className="title">Sign in</h2>
               <div className="input-field">
@@ -45,6 +47,8 @@ function LoginForm({ onLogin }) {
                 </a>
               </div>
             </form>
+
+            {/* Sign Up Form */}
             <form action="#" className="sign-up-form">
               <h2 className="title">Sign up</h2>
               <div className="input-field">
@@ -80,6 +84,7 @@ function LoginForm({ onLogin }) {
         </div>
 
         <div className="panels-container">
+          {/* Left Panel */}
           <div className="panel left-panel">
             <div className="content">
               <h3>New here ?</h3>
@@ -91,8 +96,10 @@ function LoginForm({ onLogin }) {
                 Sign up
               </button>
             </div>
-            <img src="/img/log.svg" className="image" alt="Sign In" />
+            <img src={loginImage} className="image" alt="Sign In" />
           </div>
+
+          {/* Right Panel */}
           <div className="panel right-panel">
             <div className="content">
               <h3>One of us ?</h3>
@@ -104,7 +111,7 @@ function LoginForm({ onLogin }) {
                 Sign in
               </button>
             </div>
-            <img src="/img/register.svg" className="image" alt="Sign Up" />
+            <img src={signupImage} className="image" alt="Sign Up" />
           </div>
         </div>
       </div>

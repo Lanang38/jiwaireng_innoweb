@@ -19,7 +19,7 @@ function App() {
 
   const handleLogin = () => {
     setIsAuthenticated(true);
-    navigate("/dashboard");
+    navigate("/home");
   };
 
   const handleLogout = () => {

@@ -5,6 +5,8 @@ import {
   Users, User, Settings, LogOut, LayoutGrid
 } from "lucide-react";
 
+import AlertOut from "./components/Alert";
+
 import Homee from "./pages/Homee";
 import Login from "./pages/LoginForm";
 import Pelajar from "./pages/Pelajar";

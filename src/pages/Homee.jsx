@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AlertSimpan } from "../components/Alert";
 
 function Homee() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,6 +23,8 @@ function Homee() {
   const handleFormSubmit = (event) => {
     event.preventDefault(); // Mencegah refresh halaman
     console.log("Form submitted");
+    AlertSimpan("Form berhasil dikirim!", "success");
+
     closeForm();
   };
 

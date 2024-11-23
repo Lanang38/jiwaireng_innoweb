@@ -1,83 +1,115 @@
 import React, { useState } from "react";
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
-function Login({ onLogin }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+function LoginForm({ onLogin }) {
+  const [isSignUpMode, setIsSignUpMode] = useState(false);
+
+  const handleSignUpClick = () => setIsSignUpMode(true);
+  const handleSignInClick = () => setIsSignUpMode(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Tanpa validasi input, langsung login
+    onLogin();
+  };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-transparent">
-      <div className="relative flex flex-col m-6 space-y-8 bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0 max-w-screen-md">
-        {/* Left Side */}
-        <div className="flex flex-col justify-center p-8 md:p-14">
-          <span className="mb-3 text-4xl font-bold">Selamat datang</span>
-          <span className="font-light text-gray-400 mb-8">
-            Masuk untuk mengakses akun Admin
-          </span>
-
-          <div className="py-4">
-            <label className="mb-2 text-md" htmlFor="email">
-              Email
-            </label>
-            <input
-              type="text"
-              className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-transparent"
-              name="email"
-              id="email"
-              placeholder="Masukkan email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+    <div className={`login-form-wrapper ${isSignUpMode ? "sign-up-mode" : ""}`}>
+      <div className="container">
+        <div className="forms-container">
+          <div className="signin-signup">
+            <form onSubmit={handleSubmit} className="sign-in-form">
+              <h2 className="title">Sign in</h2>
+              <div className="input-field">
+                <i className="fas fa-user"></i>
+                <input type="text" placeholder="Username" />
+              </div>
+              <div className="input-field">
+                <i className="fas fa-lock"></i>
+                <input type="password" placeholder="Password" />
+              </div>
+              <input type="submit" value="Login" className="btn solid" />
+              <p className="social-text">Or Sign in with social platforms</p>
+              <div className="social-media">
+                <a href="#" className="social-icon">
+                  <i className="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" className="social-icon">
+                  <i className="fab fa-twitter"></i>
+                </a>
+                <a href="#" className="social-icon">
+                  <i className="fab fa-google"></i>
+                </a>
+                <a href="#" className="social-icon">
+                  <i className="fab fa-linkedin-in"></i>
+                </a>
+              </div>
+            </form>
+            <form action="#" className="sign-up-form">
+              <h2 className="title">Sign up</h2>
+              <div className="input-field">
+                <i className="fas fa-user"></i>
+                <input type="text" placeholder="Username" />
+              </div>
+              <div className="input-field">
+                <i className="fas fa-envelope"></i>
+                <input type="email" placeholder="Email" />
+              </div>
+              <div className="input-field">
+                <i className="fas fa-lock"></i>
+                <input type="password" placeholder="Password" />
+              </div>
+              <input type="submit" className="btn" value="Sign up" />
+              <p className="social-text">Or Sign up with social platforms</p>
+              <div className="social-media">
+                <a href="#" className="social-icon">
+                  <i className="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" className="social-icon">
+                  <i className="fab fa-twitter"></i>
+                </a>
+                <a href="#" className="social-icon">
+                  <i className="fab fa-google"></i>
+                </a>
+                <a href="#" className="social-icon">
+                  <i className="fab fa-linkedin-in"></i>
+                </a>
+              </div>
+            </form>
           </div>
-
-          <div className="py-4">
-            <label className="mb-2 text-md" htmlFor="pass">
-              Kata Sandi
-            </label>
-            <input
-              type={showPassword ? "text" : "password"}
-              name="pass"
-              id="pass"
-              className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-transparent"
-              placeholder="Masukkan kata sandi"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-
-          <div className="flex justify-between w-full py-4">
-            <label className="flex items-center text-md">
-              <input
-                type="checkbox"
-                name="showPassword"
-                id="showPassword"
-                className="mr-2"
-                checked={showPassword}
-                onChange={(e) => setShowPassword(e.target.checked)}
-              />
-              Tampilkan Password
-            </label>
-          </div>
-
-          <button
-            onClick={onLogin}
-            className="w-full bg-green-500 text-white p-2 rounded-lg mb-6 hover:bg-green-700"
-          >
-            Masuk
-          </button>
         </div>
 
-        {/* Right Side */}
-        <div className="relative hidden md:block">
-          <img
-            src="src/assets/login1.jpg"
-            alt="Background"
-            className="w-[400px] h-full rounded-r-2xl object-cover"
-          />
+        <div className="panels-container">
+          <div className="panel left-panel">
+            <div className="content">
+              <h3>New here ?</h3>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
+                ex ratione. Aliquid!
+              </p>
+              <button className="btn transparent" onClick={handleSignUpClick}>
+                Sign up
+              </button>
+            </div>
+            <img src="/img/log.svg" className="image" alt="Sign In" />
+          </div>
+          <div className="panel right-panel">
+            <div className="content">
+              <h3>One of us ?</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+                laboriosam ad deleniti.
+              </p>
+              <button className="btn transparent" onClick={handleSignInClick}>
+                Sign in
+              </button>
+            </div>
+            <img src="/img/register.svg" className="image" alt="Sign Up" />
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default LoginForm;

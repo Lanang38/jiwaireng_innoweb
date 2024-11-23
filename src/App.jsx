@@ -9,7 +9,7 @@ import Homee from "./pages/Homee";
 import Login from "./pages/LoginForm";
 import Pelajar from "./pages/Pelajar";
 import Pengajar from "./pages/Pengajar";
-import Pengaturan from "./pages/Pengaturan"
+import Pengaturan from "./pages/Pengaturan";
 
 
 function App() {
@@ -69,10 +69,10 @@ function App() {
             <Sidebar1 expanded={sidebarExpanded} setExpanded={setSidebarExpanded}>
               <div className="my-8" />
               <SidebarItem icon={<LayoutGrid size={20} />} text="Beranda" to="/home" />
-              <hr className="my-4" />
+              <hr className="my-5" />
               <SidebarItem icon={<User size={20} />} text="Pengajar" to="/pengajar" />
               <SidebarItem icon={<Users size={20} />} text="Pelajar" to="/pelajar" />
-              <hr className="my-3" />
+              <hr className="my-5" />
               <SidebarItem icon={<Settings size={20} />} text="Pengaturan" to="/pengaturan" />
               <SidebarItem icon={<LogOut size={20} />} text="Keluar" onClick={handleLogout} />
             </Sidebar1>
@@ -82,7 +82,7 @@ function App() {
           <div
             className={`flex-grow transition-all duration-300 ease-in-out ${
               sidebarExpanded ? "ml-64" : "ml-16"
-            } mr-0 p-6 bg-gray-100 overflow-hidden `}
+            } mr-0 p-6 bg-gray-100 overflow-y-auto `}
             style={{ height: "100vh" }}
           >
 

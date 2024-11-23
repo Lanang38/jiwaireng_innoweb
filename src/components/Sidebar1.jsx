@@ -26,7 +26,7 @@ export default function Sidebar1({ children, expanded, setExpanded }) {
       className="h-screen transition-all duration-500 ease-in-out"
       style={{ width: expanded ? "16rem" : "4rem" }} // 16rem for 64, 4rem for 16
     >
-      <nav className="h-full flex flex-col bg-blue-100 border-r shadow-sm">
+      <nav className="h-full flex flex-col bg-blue-200 border-r shadow-sm">
         <div className="p-4 pb-2 flex justify-between items-center">
           <img
             src="src\assets\logo.png"

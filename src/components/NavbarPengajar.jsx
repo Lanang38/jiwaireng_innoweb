@@ -4,7 +4,7 @@ export default function NavbarPengajar({ activePage, setActivePage }) {
     return (
         <nav className="bg-transparent px-1">
             <div className="container mx-auto flex items-center justify-between">
-                <div className="flex space-x-10 w-full relative">
+                <div className="flex space-x-10 w-full relative text-xl px-6 py-2">
                     <button
                         onClick={() => setActivePage('Forum')}
                         className={`font-semibold px-4 py-2 rounded-full transition-all duration-300 ${

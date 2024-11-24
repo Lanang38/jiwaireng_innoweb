@@ -3,7 +3,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import loginImage from "../assets/login.png"; // Import gambar login
 import signupImage from "../assets/signup.png"; // Import gambar signup
 
-function LoginForm({ onLogin }) {
+function Login({ onLogin }) {
   const [isSignUpMode, setIsSignUpMode] = useState(false);
 
   const handleSignUpClick = () => setIsSignUpMode(true);
@@ -119,4 +119,4 @@ function LoginForm({ onLogin }) {
   );
 }
 
-export default LoginForm;
+export default Login;

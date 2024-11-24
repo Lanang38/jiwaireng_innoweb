@@ -3,6 +3,7 @@ import React from 'react';
 export default function NavbarPengajar({ activePage, setActivePage }) {
     return (
         <div className="w-full bg-gray-100 p-4">
+            {/* Card yang membungkus navbar */}
             <div className="bg-white shadow-lg rounded-lg p-4">
                 <nav className="w-full">
                     <div className="flex items-center justify-start text-3xl px-4">

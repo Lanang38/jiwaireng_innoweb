@@ -1,31 +1,30 @@
 /** @type {import('tailwindcss').Config} */
-
-module.exports = {
+export default {
   content: [
     "./index.html",
-    "./src/**/*.{html,js,jsx,ts,tsx}",
-    "node_modules/preline/dist/*.js",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
-      colors: {
-        primary: {
-          50: '#f0f8fe',
-          100: '#ddeffc',
-          200: '#c2e5fb',
-          300: '#98d5f8',
-          400: '#67bef3',
-          500: '#44a0ed',
-          600: '#2e84e2',
-          700: '#266ecf',
-          800: '#2862b8',
-          900: '#234c85',
-          950: '#1a3051',
-        },
+      fontFamily: {
+        sans: ['Inter', 'Poppins', 'sans-serif'],
       },
     },
   },
   plugins: [
-    require('preline/plugin'),
+    function ({addUtilities}) {
+      const newUtilities = {
+        ".no-scrollbar::-webkit-scrollbar": {
+          display: "none",
+        },
+        ".no-scrollbar": {
+          "-ms-overvlow-style": "none",
+          "scrollbar-width": "none",
+        },
+      };
+      
+      addUtilities(newUtilities)
+
+    }
   ],
-};
+}

@@ -7,7 +7,7 @@ import {
 
 import AlertOut from "./components/Alert";
 
-import Homee from "./pages/Homee";
+import Homee from "./pages/Home";
 import Login from "./pages/LoginForm";
 import Pelajar from "./pages/Pelajar";
 import Pengajar from "./pages/Pengajar";

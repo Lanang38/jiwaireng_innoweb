@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AlertSimpan } from "../components/Alert";
 
-function Homee() {
+function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const [formType, setFormType] = useState(null);
   const navigate = useNavigate();
@@ -179,4 +179,4 @@ function Homee() {
   );
 }
 
-export default Homee;
+export default Home;

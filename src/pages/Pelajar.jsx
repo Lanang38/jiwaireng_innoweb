@@ -5,9 +5,8 @@ function Pelajar() {
   const [activePage, setActivePage] = useState("Forum");
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [selectedQuiz, setSelectedQuiz] = useState(null);
-  const [isSubmitting, setIsSubmitting] = useState(false); // Track if the user is submitting
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Data Mata Kuliah
   const courses = [
     {
       id: 1,
@@ -29,7 +28,6 @@ function Pelajar() {
     },
   ];
 
-  // Komentar & Tugas untuk Mata Kuliah
   const courseDetails = {
     1: {
       comments: [
@@ -76,10 +74,47 @@ function Pelajar() {
         },
       ],
     },
-    // More quiz objects...
   ];
 
-  // Reset selected course when activePage changes
+  const constForum = [
+    {
+      kelas: "Fotografi",
+      matkul: "Pengantar Fotografi",
+      tanggal: "15 Nov 2024",
+      peserta: "5/10",
+      deskripsi: "Kursus ini mengajarkan dasar-dasar fotografi dan komposisi gambar.",
+    },
+    {
+      kelas: "Fotografi",
+      matkul: "Teknik Pencahayaan",
+      tanggal: "22 Nov 2024",
+      peserta: "3/10",
+      deskripsi: "Kursus ini membahas teknik pencahayaan yang penting dalam fotografi.",
+    },
+    {
+      kelas: "Fotografi",
+      matkul: "Komposisi dalam Fotografi",
+      tanggal: "29 Nov 2024",
+      peserta: "7/10",
+      deskripsi: "Kursus ini mengajarkan cara komposisi yang baik dalam fotografi.",
+    },
+    {
+      kelas: "Pemrograman",
+      matkul: "Pengenalan JavaScript",
+      tanggal: "18 Nov 2024",
+      peserta: "4/8",
+      deskripsi: "Kursus ini memberikan pengenalan tentang dasar-dasar JavaScript.",
+    },
+    {
+      kelas: "Pemrograman",
+      matkul: "Pengenalan ReactJS",
+      tanggal: "25 Nov 2024",
+      peserta: "6/8",
+      deskripsi: "Kursus ini mengajarkan dasar-dasar penggunaan ReactJS untuk membangun aplikasi.",
+    },
+  ];
+  
+
   useEffect(() => {
     setSelectedCourse(null);
     setSelectedQuiz(null);
@@ -114,71 +149,71 @@ function Pelajar() {
     <div>
       <NavbarPelajar activePage={activePage} setActivePage={setActivePage} />
       <div className="container mx-auto mt-4">
-        {activePage === "Forum" && (
-          <div>
-            {!selectedCourse ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {courses.map((course) => (
-                  <div
-                    key={course.id}
-                    className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-all transform hover:scale-105 cursor-pointer"
-                    onClick={() => handleCourseClick(course.id)}
-                  >
-                    <img
-                      src={course.image}
-                      alt={course.name}
-                      className="w-full h-48 object-cover"
-                    />
-                    <div className="p-4">
-                      <h2 className="text-lg font-bold text-blue-600">{course.name}</h2>
-                      <p className="text-gray-700 text-sm">{course.description}</p>
+          {activePage === "Forum" && (
+            <div>
+              {!selectedCourse ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {courses.map((course) => (
+                    <div
+                      key={course.id}
+                      className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-all transform hover:scale-105 cursor-pointer"
+                      onClick={() => handleCourseClick(course.id)}
+                    >
+                      <img
+                        src={course.image}
+                        alt={course.name}
+                        className="w-full h-48 object-cover"
+                      />
+                      <div className="p-4">
+                        <h2 className="text-lg font-bold text-blue-600">{course.name}</h2>
+                        <p className="text-gray-700 text-sm">{course.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex justify-center items-center">
+                  <div className="w-full max-w-3xl p-6 bg-white rounded-lg shadow-lg">
+                    <button
+                      className="mb-4 px-6 py-3 bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 transition-all"
+                      onClick={() => setSelectedCourse(null)}
+                    >
+                      Kembali
+                    </button>
+
+                    {/* Menampilkan gambar sesuai dengan kursus yang dipilih */}
+                    <div className="mb-6">
+                      <img
+                        src={courses.find((course) => course.id === selectedCourse)?.image}
+                        alt="Course"
+                        className="w-full h-56 object-cover rounded-lg"
+                      />
+                    </div>
+
+                    <h2 className="text-2xl font-bold mb-6 text-blue-600 text-center">
+                      {courses.find((c) => c.id === selectedCourse)?.name}
+                    </h2>
+
+                    {/* Komentar */}
+                    <div className="mb-6">
+                      <h3 className="text-xl font-semibold text-gray-800 mb-4">Komentar</h3>
+                      {courseDetails[selectedCourse]?.comments.length === 0 ? (
+                        <p className="text-gray-500">Tidak ada komentar.</p>
+                      ) : (
+                        courseDetails[selectedCourse]?.comments.map((comment, idx) => (
+                          <div key={idx} className="border-b py-4">
+                            <p>
+                              <strong className="text-blue-600">{comment.user}:</strong> {comment.content}
+                            </p>
+                          </div>
+                        ))
+                      )}
                     </div>
                   </div>
-                ))}
-              </div>
-            ) : (
-              <div className="flex justify-center items-center">
-                <div className="w-full max-w-3xl p-6 bg-white rounded-lg shadow-lg">
-                  <button
-                    className="mb-4 px-6 py-3 bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 transition-all"
-                    onClick={() => setSelectedCourse(null)}
-                  >
-                    Kembali
-                  </button>
-
-                  {/* Menampilkan gambar sesuai dengan kursus yang dipilih */}
-                  <div className="mb-6">
-                    <img
-                      src={courses.find((course) => course.id === selectedCourse)?.image}
-                      alt="Course"
-                      className="w-full h-56 object-cover rounded-lg"
-                    />
-                  </div>
-
-                  <h2 className="text-2xl font-bold mb-6 text-blue-600 text-center">
-                    {courses.find((c) => c.id === selectedCourse)?.name}
-                  </h2>
-
-                  {/* Komentar */}
-                  <div className="mb-6">
-                    <h3 className="text-xl font-semibold text-gray-800 mb-4">Komentar</h3>
-                    {courseDetails[selectedCourse]?.comments.length === 0 ? (
-                      <p className="text-gray-500">Tidak ada komentar.</p>
-                    ) : (
-                      courseDetails[selectedCourse]?.comments.map((comment, idx) => (
-                        <div key={idx} className="border-b py-4">
-                          <p>
-                            <strong className="text-blue-600">{comment.user}:</strong> {comment.content}
-                          </p>
-                        </div>
-                      ))
-                    )}
-                  </div>
                 </div>
-              </div>
-            )}
-          </div>
-        )}
+              )}
+            </div>
+          )}
 
         {activePage === "Tugas" && (
           <div>

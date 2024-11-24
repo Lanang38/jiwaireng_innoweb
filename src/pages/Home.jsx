@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AlertSimpan } from "../components/Alert";
+import Fotografi from '../assets/fotografi.jpg';
+import Pemrograman from '../assets/pemrograman.jpg';
 
-function Homee() {
+function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const [formType, setFormType] = useState(null);
   const navigate = useNavigate();
@@ -28,6 +30,42 @@ function Homee() {
     closeForm();
   };
 
+  const cardKelas = [
+  {
+    title: "Fotografi",
+    description: "Kelas Fotografi Informatika 07",
+    image: Fotografi,
+  },
+  {
+    title: "Pemrograman",
+    description: "Kelas Pemrograman Informatika 07",
+    image: Pemrograman,
+  },
+];
+
+  const cardTugas = [
+    {
+      kelas: "Fotografi",
+      tugas: "Mengambil foto bertema alam",
+      deadline: "2024-11-30",
+    },
+    {
+      kelas: "Fotografi",
+      tugas: "Edit foto menggunakan Adobe Lightroom",
+      deadline: "2024-12-05",
+    },
+    {
+      kelas: "Pemrograman",
+      tugas: "Membuat aplikasi To-Do List sederhana",
+      deadline: "2024-11-28",
+    },
+    {
+      kelas: "Pemrograman",
+      tugas: "Memahami konsep dasar API dan implementasi",
+      deadline: "2024-12-03",
+    },
+  ];
+
   return (
     <div>
       <div className="flex items-center justify-end ">
@@ -39,7 +77,7 @@ function Homee() {
           +
         </button>
         {isOpen && (
-          <div className="absolute right-48 top-20 bg-blue-400 border border-gray-300 text-white rounded-lg shadow-lg p-4 z-10">
+          <div className="absolute right-24 top-20 bg-blue-400 border border-gray-300 text-white rounded-lg shadow-lg p-4 z-10">
             <ul className="flex flex-col gap-2">
               <li>
                 <button
@@ -128,22 +166,21 @@ function Homee() {
         Daftar Kelas
       </h1>
       <div className="p-6 flex flex-row justify-start">
-        {[...Array(4)].map((_, index) => (
+        {cardKelas.map((card, index) => (
           <a
             key={index}
-            className="flex flex-col bg-white border shadow-sm rounded-xl mr-8 hover:shadow-lg focus:outline-none focus:shadow-lg transition dark:bg-neutral-900 dark:border-neutral-400 dark:shadow-neutral-700/70 w-96"
+            className="flex flex-col bg-white border shadow-sm rounded-xl mr-8 hover:shadow-lg focus:outline-none focus:shadow-lg transition w-96"
             href="#"
           >
             <img
               className="w-full h-64 rounded-t-xl object-cover"
-              src="https://images.unsplash.com/photo-1680868543815-b8666dba60f7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&q=80"
-              alt="Card Image"
+              src={card.image}
+              alt={'Image of ${card.title}'}
             />
             <div className="p-3 md:p-4 bg-blue-200">
-              <h3 className="text-base font-semibold text-black">Card title</h3>
+              <h3 className="text-base font-semibold text-black uppercase">{card.title}</h3>
               <p className="mt-1 text-sm text-black">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+                {card.description}
               </p>
             </div>
           </a>
@@ -154,29 +191,43 @@ function Homee() {
         Daftar Tugas
       </h1>
       <div className="p-6 flex flex-row justify-start">
-        {[...Array(4)].map((_, index) => (
-          <a
-            key={index}
-            className="flex flex-col bg-white border shadow-sm rounded-xl mr-8 hover:shadow-lg focus:outline-none focus:shadow-lg transition dark:bg-neutral-900 dark:border-neutral-400 dark:shadow-neutral-700/70 w-96"
-            href="#"
+      <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        {cardKelas.map((kelas) => (
+          <div
+            key={kelas.title}
+            className="bg-blue-200 border shadow-md rounded-xl p-4 hover:shadow-lg transition"
           >
-            <img
-              className="w-full h-64 rounded-t-xl object-cover"
-              src="https://images.unsplash.com/photo-1680868543815-b8666dba60f7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&q=80"
-              alt="Card Image"
-            />
-            <div className="p-3 md:p-4 bg-blue-200">
-              <h3 className="text-base font-semibold text-black">Card title</h3>
-              <p className="mt-1 text-sm text-black">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
+            <div className="flex flex-col items-center">
+              <img
+                src={kelas.image}
+                alt={kelas.title}
+                className="w-full h-40 rounded-t-xl object-cover"
+              />
+              <div className="mt-4 text-center">
+                <h2 className="text-xl font-bold text-black dark:text-white">{kelas.title}</h2>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{kelas.description}</p>
+              </div>
             </div>
-          </a>
+            <ul className="mt-4 space-y-2">
+              {cardTugas
+                .filter((tugas) => tugas.kelas === kelas.title)
+                .map((tugas, index) => (
+                  <li
+                    key={index}
+                    className="text-sm text-black dark:text-gray-300 p-2 bg-blue-50 rounded-md dark:bg-blue-900/20"
+                  >
+                    <span className="font-semibold">• {tugas.tugas}</span>
+                    <br />
+                    <span className="text-xs text-gray-600 dark:text-gray-400">Deadline: {tugas.deadline}</span>
+                  </li>
+                ))}
+            </ul>
+          </div>
         ))}
+      </div>
       </div>
     </div>
   );
 }
 
-export default Homee;
+export default Home;

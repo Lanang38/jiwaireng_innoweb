@@ -7,10 +7,10 @@ import {
 
 import AlertOut from "./components/Alert";
 
-import Homee from "./pages/Homee";
+import Home from "./pages/Home";
 import Login from "./pages/LoginForm";
-import Pelajar from "./pages/Pelajar";
-import Pengajar from "./pages/Pengajar";
+import Pelajar from "./pages/pelajar";
+import Pengajar from "./pages/pengajar";
 import Pengaturan from "./pages/Pengaturan";
 
 
@@ -89,7 +89,7 @@ function App() {
           >
 
             <Routes>
-              <Route path="/home" element={<Homee/>} />
+              <Route path="/home" element={<Home/>} />
               <Route path="/pengajar" element={<Pengajar/>} />
               <Route path="/pelajar" element={<Pelajar/>} />
               <Route path="/pengaturan" element={<Pengaturan />} />

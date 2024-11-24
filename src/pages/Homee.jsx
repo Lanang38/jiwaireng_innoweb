@@ -62,67 +62,71 @@ function Homee() {
         )}
       </div>
 
-      {/* Form */}
-      {formType && (
-        <div className="fixed inset-0 flex items-center justify-center text-white bg-black bg-opacity-60 z-20">
-          <div className="bg-blue-500 p-6 rounded-lg shadow-lg w-1/3">
-            <h2 className="text-2xl text-white font-bold mb-4">{formType}</h2>
-            <form onSubmit={handleFormSubmit}>
-              {formType === "Tambah Kelas" && (
-                <>
-                  <label className="block mb-2 font-medium text-primary-50">
-                    Nama Kelas
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full border border-black-300 rounded-lg p-2 mb-4 text-black"
-                  />
-                  <label className="block mb-2 font-medium text-primary-50">
-                    Nama Pelajaran
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full border border-gray-300 rounded-lg p-2 mb-4 text-black"
-                  />
-                  <label className="block mb-2 font-medium text-primary-50">
-                    Nama Pengajar
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full border border-gray-300 rounded-lg p-2 mb-4 text-black"
-                  />
-                </>
-              )}
-              {formType === "Masuk Kelas" && (
-                <>
-                  <label className="block mb-2 font-medium text-primary-50">
-                    Kode Kelas
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full border border-gray-300 rounded-lg p-2 mb-4 text-black"
-                  />
-                </>
-              )}
-              <div className="flex justify-end">
-                <button
-                  type="button"
-                  onClick={closeForm}
-                  className="px-4 py-2 bg-red-500 text-white rounded-lg mr-2 transition-all duration-300 ease-in-out hover:bg-primary-600"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-green-500 text-white rounded-lg transition-all duration-300 ease-in-out hover:bg-primary-600"
-                >
-                  Submit
-                </button>
-              </div>
-            </form>
+{/* Form */}
+{formType && (
+  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-20">
+    <div className="bg-blue-500 p-8 rounded-lg shadow-lg w-full max-w-3xl">
+      <h2 className="text-2xl font-bold text-white mb-6 text-center">{formType}</h2>
+      <form onSubmit={handleFormSubmit} className="space-y-8">
+        {formType === "Tambah Kelas" && (
+          <>
+            <div className="flex flex-col w-full">
+              <label className="text-white font-medium text-left w-full">Nama Kelas</label>
+              <input
+                type="text"
+                className="w-full border border-gray-300 rounded-lg p-4 text-black"
+                placeholder="Masukkan nama kelas"
+              />
+            </div>
+            <div className="flex flex-col w-full">
+              <label className="text-white font-medium text-left w-full">Nama Pelajaran</label>
+              <input
+                type="text"
+                className="w-full border border-gray-300 rounded-lg p-4 text-black"
+                placeholder="Masukkan nama pelajaran"
+              />
+            </div>
+            <div className="flex flex-col w-full">
+              <label className="text-white font-medium text-left w-full">Nama Pengajar</label>
+              <input
+                type="text"
+                className="w-full border border-gray-300 rounded-lg p-4 text-black"
+                placeholder="Masukkan nama pengajar"
+              />
+            </div>
+          </>
+        )}
+        {formType === "Masuk Kelas" && (
+          <div className="flex flex-col w-full">
+            <label className="text-white font-medium text-left w-full">Kode Kelas</label>
+            <input
+              type="text"
+              className="w-full border border-gray-300 rounded-lg p-4 text-black"
+              placeholder="Masukkan kode kelas"
+            />
           </div>
+        )}
+        <div className="flex justify-end ml-auto space-x-4">
+          <button
+            type="button"
+            onClick={closeForm}
+            className="px-10 py-3 bg-red-500 text-white rounded-lg transition-all duration-300 hover:bg-red-600"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="px-10 py-3 bg-green-500 text-white rounded-lg transition-all duration-300 hover:bg-green-600"
+          >
+            Submit
+          </button>
         </div>
-      )}
+      </form>
+    </div>
+  </div>
+)}
+
+
 
       <h1 className="text-3xl font-semibold mb-6 text-primary-500">
         Daftar Kelas

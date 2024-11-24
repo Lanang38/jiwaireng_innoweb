@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import profileImg from '../assets/zee.webp'; 
 
 function Pengaturan() {
-  const [activeTab, setActiveTab] = useState("profile");
   const [profile, setProfile] = useState({
     name: "Azizi Asadel",
     email: "AziziAsadel@gmail.com",
@@ -11,10 +10,6 @@ function Pengaturan() {
   });
   const [newPassword, setNewPassword] = useState("");
   const [newName, setNewName] = useState(profile.name);
-
-  const handleTabSwitch = (tab) => {
-    setActiveTab(tab);
-  };
 
   const handleNameChange = (e) => {
     setNewName(e.target.value);
@@ -38,49 +33,23 @@ function Pengaturan() {
       <div className="w-full max-w-4xl bg-white p-8 rounded-lg shadow-lg space-y-8">
         <h1 className="text-4xl font-bold text-center mb-6 text-blue-600 uppercase">Pengaturan</h1>
 
-        <div className="flex justify-center space-x-8 mb-6">
-          <button
-            onClick={() => handleTabSwitch("profile")}
-            className={`px-6 py-3 text-xl font-semibold uppercase rounded-md transition-all ${
-              activeTab === "profile"
-                ? "bg-blue-500 text-white shadow-md"
-                : "bg-gray-200 text-gray-800 hover:bg-blue-500 hover:text-white"
-            }`}
-          >
-            Profil
-          </button>
-          <button
-            onClick={() => handleTabSwitch("settings")}
-            className={`px-6 py-3 text-xl font-semibold uppercase rounded-md transition-all ${
-              activeTab === "settings"
-                ? "bg-blue-500 text-white shadow-md"
-                : "bg-gray-200 text-gray-800 hover:bg-blue-500 hover:text-white"
-            }`}
-          >
-            Pengaturan
-          </button>
-        </div>
-
-        {activeTab === "profile" && (
-          <div>
-            <div className="flex flex-col items-center space-y-4">
-              <img
-                src={profile.profilePicture}
-                alt="Profile"
-                className="w-96 h-96 rounded-full object-cover border-4 border-blue-500 shadow-lg"
-              />
-              <div className="text-center space-y-2">
-                <h2 className="text-4xl font-semibold text-gray-800">{profile.name}</h2>
-                <p className="text-gray-500">{profile.email}</p>
-              </div>
+        <div className="flex flex-col items-center space-y-6">
+          {/* Profile Section */}
+          <div className="flex flex-col items-center space-y-4">
+            <img
+              src={profile.profilePicture}
+              alt="Profile"
+              className="w-96 h-96 rounded-full object-cover border-4 border-blue-500 shadow-lg"
+            />
+            <div className="text-center space-y-2">
+              <h2 className="text-4xl font-semibold text-gray-800">{profile.name}</h2>
+              <p className="text-gray-500">{profile.email}</p>
             </div>
           </div>
-        )}
 
-        {activeTab === "settings" && (
+          {/* Settings Section */}
           <div className="space-y-6">
-            <h3 className="text-xl font-semibold text-gray-800 mb-4">Pengaturan Akun</h3>
-
+            <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">Pengaturan Akun</h3> {/* Centering this text */}
             <form onSubmit={handleSaveChanges}>
               <div className="mb-4">
                 <label className="block text-gray-700">Ubah Nama</label>
@@ -126,7 +95,7 @@ function Pengaturan() {
               </div>
             </form>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

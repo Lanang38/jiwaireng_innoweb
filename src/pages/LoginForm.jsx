@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import loginImage from "../assets/login.png"; // Import gambar login
-import signupImage from "../assets/signup.png"; // Import gambar signup
+import loginImage from "../assets/login.png";
+import signupImage from "../assets/signup.png";
 
 function LoginForm({ onLogin }) {
   const [isSignUpMode, setIsSignUpMode] = useState(false);
